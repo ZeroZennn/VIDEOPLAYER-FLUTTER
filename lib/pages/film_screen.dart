@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
+import 'watch_movie.dart';
 
 class FilmScreen extends StatelessWidget {
   const FilmScreen({super.key});
@@ -78,7 +81,14 @@ class FilmScreen extends StatelessWidget {
                         backgroundColor: Colors.red,
                         shape: const StadiumBorder(),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const WatchMovieScreen(),
+                          ),
+                        );
+                      },
+
                       icon: const Icon(Icons.play_arrow),
                       label: const Text(
                         "Watch Now",
@@ -93,7 +103,7 @@ class FilmScreen extends StatelessWidget {
                         backgroundColor: Colors.white,
                         shape: const StadiumBorder(),
                       ),
-                      onPressed: () {},
+                      onPressed: () => _showTrailerPopup(context),
                       icon: const Icon(Icons.ondemand_video, color: Colors.red),
                       label: const Text(
                         "Watch Trailer",
@@ -257,6 +267,95 @@ class FilmScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showTrailerPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(
+        0.7,
+      ), // latar belakang transparan gelap
+      builder: (context) {
+        return Center(child: TrailerPlayer());
+      },
+    );
+  }
+}
+
+class TrailerPlayer extends StatefulWidget {
+  const TrailerPlayer({super.key});
+
+  @override
+  State<TrailerPlayer> createState() => _TrailerPlayerState();
+}
+
+class _TrailerPlayerState extends State<TrailerPlayer> {
+  late VideoPlayerController _videoPlayerController;
+  ChewieController? _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializePlayer();
+  }
+
+  Future<void> _initializePlayer() async {
+    _videoPlayerController = VideoPlayerController.asset(
+      'assets/videos/gundam_trailer.mp4', // Ganti sesuai lokasi file kamu
+    );
+
+    await _videoPlayerController.initialize();
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      autoPlay: true,
+      looping: false,
+      allowFullScreen: true,
+      aspectRatio: _videoPlayerController.value.aspectRatio,
+    );
+
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _videoPlayerController.dispose();
+    _chewieController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.black.withOpacity(0.8),
+      child: Stack(
+        children: [
+          Center(
+            child:
+                _chewieController != null &&
+                        _chewieController!
+                            .videoPlayerController
+                            .value
+                            .isInitialized
+                    ? Chewie(controller: _chewieController!)
+                    : const CircularProgressIndicator(color: Colors.white),
+          ),
+          Positioned(
+            top: 20,
+            left: 20,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop(); // Tutup popup
+              },
+              child: const CircleAvatar(
+                backgroundColor: Colors.white24,
+                child: Icon(Icons.close, color: Colors.white),
+              ),
+            ),
           ),
         ],
       ),
