@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'watch_movie.dart';
+import 'dart:ui';
 
 class FilmScreen extends StatelessWidget {
   const FilmScreen({super.key});
@@ -23,18 +24,73 @@ class FilmScreen extends StatelessWidget {
             // Gambar Cuplikan Film
             Stack(
               children: [
-                SizedBox(
-                  height: 350,
+                Image.asset(
+                  'assets/images/gundam_screen.jpg',
+                  height: 400,
                   width: double.infinity,
-                  child: Image.asset(
-                    'assets/images/gundam_screen.jpg',
-                    fit: BoxFit.cover,
+                  fit: BoxFit.cover,
+                ),
+                Positioned.fill(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+                    child: Container(color: Colors.black.withOpacity(0.3)),
                   ),
                 ),
-
+                // Positioned.fill(
+                //   child: Container(
+                //     decoration: const BoxDecoration(
+                //       gradient: LinearGradient(
+                //         begin: Alignment.bottomCenter,
+                //         end: Alignment.topCenter,
+                //         colors: [Colors.black87, Colors.transparent],
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Title + Info
+                Positioned(
+                  bottom: 120,
+                  left: 20,
+                  right: 20,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "MOBILE SUIT GUNDAM",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Fantasy",
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                          _dotSeparator(),
+                          const Text(
+                            "2023",
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                          _dotSeparator(),
+                          const Text(
+                            "Movie",
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
                 // Box Rating
                 Positioned(
-                  bottom: 20,
+                  bottom: 80,
                   left: 20,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
@@ -67,54 +123,101 @@ class FilmScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Buttons
+                Positioned(
+                  bottom: 20,
+                  left: 20,
+                  right: 20,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const WatchMovieScreen(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.play_arrow),
+                          label: const Text(
+                            "Watch Now",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () => _showTrailerPopup(context),
+                          icon: const Icon(
+                            Icons.ondemand_video,
+                            color: Colors.red,
+                          ),
+                          label: const Text(
+                            "Watch Trailer",
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
 
-            // Tombol Watch Now dan Trailer
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const WatchMovieScreen(),
-                          ),
-                        );
-                      },
+            // // Tombol Watch Now dan Trailer
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20),
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: ElevatedButton.icon(
+            //           style: ElevatedButton.styleFrom(
+            //             backgroundColor: Colors.red,
+            //             shape: const StadiumBorder(),
+            //           ),
+            //           onPressed: () {
+            //             Navigator.of(context).push(
+            //               MaterialPageRoute(
+            //                 builder: (context) => const WatchMovieScreen(),
+            //               ),
+            //             );
+            //           },
 
-                      icon: const Icon(Icons.play_arrow),
-                      label: const Text(
-                        "Watch Now",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () => _showTrailerPopup(context),
-                      icon: const Icon(Icons.ondemand_video, color: Colors.red),
-                      label: const Text(
-                        "Watch Trailer",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
+            //           icon: const Icon(Icons.play_arrow),
+            //           label: const Text(
+            //             "Watch Now",
+            //             style: TextStyle(color: Colors.white),
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(width: 10),
+            //       Expanded(
+            //         child: OutlinedButton.icon(
+            //           style: OutlinedButton.styleFrom(
+            //             backgroundColor: Colors.white,
+            //             shape: const StadiumBorder(),
+            //           ),
+            //           onPressed: () => _showTrailerPopup(context),
+            //           icon: const Icon(Icons.ondemand_video, color: Colors.red),
+            //           label: const Text(
+            //             "Watch Trailer",
+            //             style: TextStyle(color: Colors.red),
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(height: 20),
 
             // Deskripsi Film
@@ -230,13 +333,6 @@ class FilmScreen extends StatelessWidget {
     );
   }
 
-  Widget _divider() => Container(
-    height: 12,
-    width: 1,
-    color: Colors.white24,
-    margin: const EdgeInsets.symmetric(horizontal: 10),
-  );
-
   Widget _roundedIcon(IconData icon) {
     return Container(
       decoration: const BoxDecoration(
@@ -272,6 +368,18 @@ class FilmScreen extends StatelessWidget {
       ),
     );
   }
+
+  static Widget _dotSeparator() => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 6),
+    child: Text("•", style: TextStyle(color: Colors.white70)),
+  );
+
+  Widget _divider() => Container(
+    height: 12,
+    width: 1,
+    color: Colors.white24,
+    margin: const EdgeInsets.symmetric(horizontal: 10),
+  );
 
   void _showTrailerPopup(BuildContext context) {
     showDialog(
