@@ -20,7 +20,10 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           // Background image
           Positioned.fill(
-            child: Image.asset('assets/images/test-bg.jpg', fit: BoxFit.cover),
+            child: Image.asset(
+              'assets/images/bg_netflix.png',
+              fit: BoxFit.cover,
+            ),
           ),
           // Blur effect
           Positioned.fill(
@@ -94,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                           TextSpan(
                             text: 'Netflix',
                             style: TextStyle(
-                              color: Colors.red,
+                              color: Color.fromARGB(255, 184, 22, 10),
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
                             ),
@@ -117,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {},
                     child: const Text(
                       'Sign up now',
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Color.fromARGB(255, 184, 22, 10)),
                     ),
                   ),
                 ],
@@ -152,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
+          backgroundColor: const Color.fromARGB(255, 184, 22, 10),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: () {

@@ -54,7 +54,7 @@ class BottomNavbar extends StatelessWidget {
           icon,
           color:
               currentIndex == index
-                  ? Colors.red
+                  ? const Color.fromARGB(255, 184, 22, 10)
                   : Colors.white.withOpacity(0.6),
           size: 36,
         ),

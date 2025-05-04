@@ -14,7 +14,7 @@ class WelcomePage extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/test-bg.jpg',
+              'assets/images/bg_netflix.png',
               fit: BoxFit.cover,
             ),
           ),
@@ -37,7 +37,7 @@ class WelcomePage extends StatelessWidget {
                   Text(
                     'Welcome to Netflix',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -45,16 +45,26 @@ class WelcomePage extends StatelessWidget {
                   Text(
                     'Netflix',
                     style: TextStyle(
-                      color: Colors.red,
+                      color: const Color.fromARGB(255, 184, 22, 10),
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
+                  const SizedBox(height: 30),
+
+                  Image.asset(
+                    'assets/images/welcome_img.png',
+                    height: 200,
+                    width: 256,
+                    fit: BoxFit.cover,
+                  ),
+
                   const SizedBox(height: 20),
                   Text(
                     "Discover Centenary's Best Streaming App to bring joy to your days!",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                    style: TextStyle(color: Colors.white70, fontSize: 24),
                   ),
                   const SizedBox(height: 30),
                   // navigasi ke home atau login
@@ -68,7 +78,7 @@ class WelcomePage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
+                      backgroundColor: const Color.fromARGB(255, 184, 22, 10),
                       padding: EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 14,
@@ -78,12 +88,9 @@ class WelcomePage extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'Get Started', 
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        )
-                      ),
+                      'Get Started',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ],
               ),
