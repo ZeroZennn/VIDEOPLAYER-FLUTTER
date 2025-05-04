@@ -16,12 +16,12 @@ class MainScreen extends StatefulWidget {
 class MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = const [
-    HomePage(),
+  final List<Widget> _pages = [
+    const HomePage(),
     SearchPage(),
-    BookmarkPage(),
-    AccountPage(),
-    FilmScreen(),
+    const BookmarkPage(),
+    const AccountPage(),
+    const FilmScreen(),
   ];
 
   @override
