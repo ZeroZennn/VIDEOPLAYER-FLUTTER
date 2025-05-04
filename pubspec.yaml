@@ -68,6 +68,7 @@ flutter:
     - assets/movies/
     - assets/audios/netflix_intro_ogg.ogg
     - assets/audios/netflix_intro.mp3
+    - assets/genres/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
