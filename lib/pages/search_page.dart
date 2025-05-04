@@ -11,7 +11,7 @@ class SearchPage extends StatelessWidget {
     'Action',
     'Drama',
     'Comedy',
-    'Horror'
+    'Horror',
   ];
 
   @override
@@ -56,7 +56,7 @@ class SearchPage extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  fakeMovies[12],
+                  fakeMovies[11],
                   height: 180,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -101,18 +101,15 @@ class SearchPage extends StatelessWidget {
           SliverPadding(
             padding: EdgeInsets.all(16),
             sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      fakeMovies[index % fakeMovies.length],
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-                childCount: fakeMovies.length,
-              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    fakeMovies[index % fakeMovies.length],
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }, childCount: fakeMovies.length),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 8,
@@ -128,18 +125,18 @@ class SearchPage extends StatelessWidget {
 
   /// Reusable: Section Title
   SliverToBoxAdapter sectionTitle(String title) => SliverToBoxAdapter(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
         ),
-      );
+      ),
+    ),
+  );
 
   /// Reusable: Horizontal Poster List
   SliverToBoxAdapter horizontalPosterList(List<String> posters) =>
@@ -173,7 +170,6 @@ class SizedBoxAdapter extends StatelessWidget {
   final double height;
   const SizedBoxAdapter({required this.height});
   @override
-  Widget build(BuildContext context) => SliverToBoxAdapter(
-        child: SizedBox(height: height),
-      );
+  Widget build(BuildContext context) =>
+      SliverToBoxAdapter(child: SizedBox(height: height));
 }
