@@ -80,7 +80,10 @@ class FilmScreen extends StatelessWidget {
                       ),
                       onPressed: () {},
                       icon: const Icon(Icons.play_arrow),
-                      label: const Text("Watch Now"),
+                      label: const Text(
+                        "Watch Now",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -185,24 +188,24 @@ class FilmScreen extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       children: [
                         _castItem(
-                          "assets/images/actor1.jpg",
+                          "assets/images/mamoru.png",
                           "Actor",
-                          "Jacob Fortune",
+                          "Mamoru Miyano",
                         ),
                         _castItem(
-                          "assets/images/actor2.jpg",
-                          "Actress",
-                          "Shira Haas",
+                          "assets/images/haruka.png",
+                          "Actor",
+                          "Haruka Tomatsu",
                         ),
                         _castItem(
                           "assets/images/actor3.jpg",
                           "Actor",
-                          "Kyle Soller",
+                          "Shin'ichirô Miki",
                         ),
                         _castItem(
                           "assets/images/actor4.jpg",
                           "Actress",
-                          "Greta Scacchi",
+                          "Rie Kugimiya",
                         ),
                       ],
                     ),
