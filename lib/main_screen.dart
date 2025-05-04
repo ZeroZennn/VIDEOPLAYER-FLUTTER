@@ -19,7 +19,7 @@ class MainScreenState extends State<MainScreen> {
   final List<Widget> _pages = [
     const HomePage(),
     SearchPage(),
-    const BookmarkPage(),
+    BookmarkPage(),
     const AccountPage(),
     const FilmScreen(),
   ];
