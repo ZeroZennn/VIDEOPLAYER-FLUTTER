@@ -156,13 +156,22 @@ class _LoginPageState extends State<LoginPage> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         onPressed: () {
-          setState(() {
-            _showLoginForm = true;
-          });
+          if (_showLoginForm) {
+            // Arahkan ke halaman main screen jika form login sudah tampil
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const MainScreen()),
+            );
+          } else {
+            // Tampilkan form login
+            setState(() {
+              _showLoginForm = true;
+            });
+          }
         },
-        child: const Text(
-          'Sign in with password',
-          style: TextStyle(color: Colors.white, fontSize: 16),
+        child: Text(
+          _showLoginForm ? 'Login' : 'Sign in with password',
+          style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
