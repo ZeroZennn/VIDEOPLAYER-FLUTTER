@@ -140,7 +140,7 @@ class BookmarkPage extends StatelessWidget {
                             vertical: 2,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.red[600],
+                            color: Color.fromARGB(255, 184, 22, 10),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -163,7 +163,12 @@ class BookmarkPage extends StatelessWidget {
                       child: ElevatedButton.icon(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            184,
+                            22,
+                            10,
+                          ),
                           foregroundColor: const Color.fromARGB(
                             255,
                             255,
@@ -178,7 +183,11 @@ class BookmarkPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        icon: Icon(Icons.play_arrow, size: 20),
+                        icon: Icon(
+                          Icons.play_arrow,
+                          size: 20,
+                          color: Colors.white,
+                        ),
                         label: Text('Play'),
                       ),
                     ),
