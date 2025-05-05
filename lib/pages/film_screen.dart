@@ -75,7 +75,7 @@ class FilmScreen extends StatelessWidget {
                           ),
                           _dotSeparator(),
                           const Text(
-                            "2023",
+                            "2019",
                             style: TextStyle(color: Colors.white70),
                           ),
                           _dotSeparator(),
@@ -133,7 +133,7 @@ class FilmScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
+                            backgroundColor: Color.fromARGB(255, 184, 22, 10),
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {
@@ -143,7 +143,10 @@ class FilmScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          icon: const Icon(Icons.play_arrow),
+                          icon: const Icon(
+                            Icons.play_arrow,
+                            color: Colors.white,
+                          ),
                           label: const Text(
                             "Watch Now",
                             style: TextStyle(color: Colors.white),
@@ -160,11 +163,13 @@ class FilmScreen extends StatelessWidget {
                           onPressed: () => _showTrailerPopup(context),
                           icon: const Icon(
                             Icons.ondemand_video,
-                            color: Colors.red,
+                            color: Color.fromARGB(255, 184, 22, 10),
                           ),
                           label: const Text(
                             "Watch Trailer",
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 184, 22, 10),
+                            ),
                           ),
                         ),
                       ),
@@ -311,12 +316,12 @@ class FilmScreen extends StatelessWidget {
                           "Haruka Tomatsu",
                         ),
                         _castItem(
-                          "assets/images/actor3.jpg",
+                          "assets/images/miki.png",
                           "Actor",
                           "Shin'ichirô Miki",
                         ),
                         _castItem(
-                          "assets/images/actor4.jpg",
+                          "assets/images/rie.png",
                           "Actress",
                           "Rie Kugimiya",
                         ),
@@ -344,6 +349,7 @@ class FilmScreen extends StatelessWidget {
     );
   }
 
+  // widget cast item
   Widget _castItem(String assetPath, String role, String name) {
     return Container(
       margin: const EdgeInsets.only(right: 15),

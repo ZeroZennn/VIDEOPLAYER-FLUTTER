@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'film_screen.dart';
+import 'series_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -219,14 +220,33 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: posters.length,
             itemBuilder: (context, index) {
-              return Container(
-                width: 120,
-                margin: const EdgeInsets.only(right: 12),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: DecorationImage(
-                    image: AssetImage(posters[index]),
-                    fit: BoxFit.cover,
+              return MouseRegion(
+                cursor: SystemMouseCursors.click, // Untuk cursor pointer di web
+                child: GestureDetector(
+                  onTap: () {
+                    // Navigasi tergantung pada kategori
+                    if (title == "Series") {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SeriesScreen()),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const FilmScreen()),
+                      );
+                    }
+                  },
+                  child: Container(
+                    width: 120,
+                    margin: const EdgeInsets.only(right: 12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: AssetImage(posters[index]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               );
